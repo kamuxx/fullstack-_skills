@@ -1,0 +1,37 @@
+{
+    "name": "@kamuxx/fullstack-skills",
+    "version": "1.0.0",
+    "description": "14 Global Skills for Antigravity Agent - Senior Full-Stack Architecture System",
+    "main": "index.js",
+    "bin": {
+        "install-skills": "./bin/install.js"
+    },
+    "scripts": {
+        "postinstall": "node bin/install.js"
+    },
+    "keywords": [
+        "antigravity",
+        "skills",
+        "architecture",
+        "fullstack",
+        "ai-agent",
+        "code-quality",
+        "integration",
+        "devops"
+    ],
+    "author": "Lester J. Rodriguez R. <kamuxx>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kamuxx/fullstack-_skills.git"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "files": [
+        "skills/**/*",
+        "bin/**/*",
+        "README.md",
+        "LICENSE"
+    ]
+}
