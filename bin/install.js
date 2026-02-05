@@ -3,11 +3,20 @@
 /**
  * Antigravity Skills Installer
  * Instala los 14 skills globales en la ubicación correcta de Antigravity
+ *
+ * Uso:
+ *   npx @kamuxx/fullstack-skills              # Instala la última versión
+ *   npx @kamuxx/fullstack-skills --version    # Muestra la versión
+ *   npx @kamuxx/fullstack-skills -v           # Muestra la versión
  */
 
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+
+// Leer la versión del package.json
+const packageJson = require('../package.json');
+const VERSION = packageJson.version;
 
 // Colores para la consola
 const colors = {
@@ -17,11 +26,32 @@ const colors = {
     yellow: '\x1b[33m',
     blue: '\x1b[34m',
     red: '\x1b[31m',
-    cyan: '\x1b[36m'
+    cyan: '\x1b[36m',
+    magenta: '\x1b[35m'
 };
 
 function log(message, color = 'reset') {
     console.log(`${colors[color]}${message}${colors.reset}`);
+}
+
+function showVersion() {
+    log('\n╔════════════════════════════════════════════════════════════╗', 'cyan');
+    log(`║   Antigravity Skills Installer v${VERSION.padEnd(24)}║`, 'cyan');
+    log('╚════════════════════════════════════════════════════════════╝\n', 'cyan');
+}
+
+function showHelp() {
+    showVersion();
+    log('Uso:', 'bright');
+    log('  npx @kamuxx/fullstack-skills              # Instalar skills', 'blue');
+    log('  npx @kamuxx/fullstack-skills --version    # Mostrar versión', 'blue');
+    log('  npx @kamuxx/fullstack-skills --help       # Mostrar ayuda', 'blue');
+    log('\nInstalación desde versión específica:', 'bright');
+    log('  npx @kamuxx/fullstack-skills@1.0.0        # Versión específica', 'blue');
+    log('  npx github:kamuxx/fullstack-_skills#v1.0.0  # Desde GitHub tag', 'blue');
+    log('  npx github:kamuxx/fullstack-_skills#v1.1.0  # Otra versión', 'blue');
+    log('\nMás información:', 'bright');
+    log('  https://github.com/kamuxx/fullstack-_skills\n', 'cyan');
 }
 
 function getAntigravityPath() {
@@ -58,7 +88,7 @@ function copyRecursiveSync(src, dest) {
 
 function main() {
     log('\n╔════════════════════════════════════════════════════════════╗', 'cyan');
-    log('║   🚀 Antigravity Skills Installer v1.0.0                 ║', 'cyan');
+    log(`║   🚀 Antigravity Skills Installer v${VERSION.padEnd(21)}║`, 'cyan');
     log('║   14 Global Skills for Senior Full-Stack Architecture    ║', 'cyan');
     log('╚════════════════════════════════════════════════════════════╝\n', 'cyan');
 
@@ -150,6 +180,17 @@ function main() {
     log('🎯 Los skills están ahora disponibles globalmente en Antigravity.\n', 'green');
     log('📚 Para más información, visita:', 'blue');
     log('   https://github.com/kamuxx/fullstack-_skills\n', 'blue');
+}
+
+// Procesar argumentos de línea de comandos
+const args = process.argv.slice(2);
+if (args.includes('--version') || args.includes('-v')) {
+    showVersion();
+    process.exit(0);
+}
+if (args.includes('--help') || args.includes('-h')) {
+    showHelp();
+    process.exit(0);
 }
 
 // Ejecutar el instalador
