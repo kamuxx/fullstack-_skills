@@ -1,6 +1,6 @@
 {
     "name": "@kamuxx/fullstack-skills",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "14 Global Skills for Antigravity Agent - Senior Full-Stack Architecture System",
     "main": "index.js",
     "bin": {

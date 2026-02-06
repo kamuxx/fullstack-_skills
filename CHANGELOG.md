@@ -7,10 +7,20 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-02-06
+
 ### Added
-- Sistema de versionado con soporte para tags
-- Comando `--version` y `--help` en el instalador
-- Script automatizado de release (`release.sh`)
+- **New Business & Governance Suite**:
+  - `15-commiter`: Senior Conventional Commits enforcer
+  - `16-changelog-generator`: Automated documentation keeper
+  - `17-project-estimator`: Tiered sales proposal generator
+  - `18-growth-hacker`: ROI & Analytics strategist
+  - `19-security-sentinel`: OWASP security auditor
+  - `20-startup-validator`: Lean Startup risk assessor
+  - `21-project-bootstrapper`: Project Mandate (`gemini.md`) orchestrator
+  - `22-reality-check`: Anti-hallucination guardrails
+
+### Changed
 - Documentación completa de versionado (`VERSIONING.md`)
 - CHANGELOG.md para rastrear cambios
 
@@ -60,5 +70,6 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ---
 
-[Unreleased]: https://github.com/kamuxx/fullstack-_skills/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/kamuxx/fullstack-_skills/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/kamuxx/fullstack-_skills/releases/tag/v1.1.0
 [1.0.0]: https://github.com/kamuxx/fullstack-_skills/releases/tag/v1.0.0
