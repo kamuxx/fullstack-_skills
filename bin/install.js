@@ -43,13 +43,15 @@ function showVersion() {
 function showHelp() {
     showVersion();
     log('Uso:', 'bright');
-    log('  npx @kamuxx/fullstack-skills              # Instalar skills', 'blue');
+    log('  npx @kamuxx/fullstack-skills              # Instalar TODOS los skills', 'blue');
+    log('  npx @kamuxx/fullstack-skills add <name>   # Instalar skill específico', 'blue');
     log('  npx @kamuxx/fullstack-skills --version    # Mostrar versión', 'blue');
     log('  npx @kamuxx/fullstack-skills --help       # Mostrar ayuda', 'blue');
+    log('\nEjemplos:', 'bright');
+    log('  npx @kamuxx/fullstack-skills add 15-commiter', 'cyan');
+    log('  npx @kamuxx/fullstack-skills add 16-changelog-generator', 'cyan');
     log('\nInstalación desde versión específica:', 'bright');
-    log('  npx @kamuxx/fullstack-skills@1.0.0        # Versión específica', 'blue');
-    log('  npx github:kamuxx/fullstack-_skills#v1.0.0  # Desde GitHub tag', 'blue');
-    log('  npx github:kamuxx/fullstack-_skills#v1.1.0  # Otra versión', 'blue');
+    log('  npx @kamuxx/fullstack-skills@1.1.0        # Versión específica', 'blue');
     log('\nMás información:', 'bright');
     log('  https://github.com/kamuxx/fullstack-_skills\n', 'cyan');
 }
@@ -89,7 +91,7 @@ function copyRecursiveSync(src, dest) {
 function main() {
     log('\n╔════════════════════════════════════════════════════════════╗', 'cyan');
     log(`║   🚀 Antigravity Skills Installer v${VERSION.padEnd(21)}║`, 'cyan');
-    log('║   14 Global Skills for Senior Full-Stack Architecture    ║', 'cyan');
+    log('║   22 Global Skills for Senior Full-Stack Architecture    ║', 'cyan');
     log('╚════════════════════════════════════════════════════════════╝\n', 'cyan');
 
     const targetPath = getAntigravityPath();
@@ -130,27 +132,60 @@ function main() {
         '11-knowledge-extractor',
         '12-migration-modernizer',
         '13-ui-ux-designer',
-        '14-frontend-stylist'
+        '14-frontend-stylist',
+        '15-commiter',
+        '16-changelog-generator',
+        '17-project-estimator',
+        '18-growth-hacker',
+        '19-security-sentinel',
+        '20-startup-validator',
+        '21-project-bootstrapper',
+        '22-reality-check'
     ];
+
+    // Filtrar skills si se especificaron argumentos
+    const args = process.argv.slice(2);
+    let skillsToInstall = skills;
+
+    if (args.length > 0 && args[0] === 'add') {
+        const requestedSkill = args[1];
+        if (!requestedSkill) {
+            log('❌ Error: Debes especificar el nombre del skill a instalar.', 'red');
+            log('   Ejemplo: npx @kamuxx/fullstack-skills add 15-commiter', 'yellow');
+            process.exit(1);
+        }
+
+        // Búsqueda aproximada o exacta
+        const match = skills.find(s => s.includes(requestedSkill));
+        if (match) {
+            skillsToInstall = [match];
+            log(`🎯 Modo: Instalando solo '${match}'...`, 'magenta');
+        } else {
+            log(`❌ Error: No se encontró ningún skill que coincida con '${requestedSkill}'`, 'red');
+            log('   Lista disponible:', 'yellow');
+            skills.forEach(s => log(`   - ${s}`, 'cyan'));
+            process.exit(1);
+        }
+    }
 
     let installed = 0;
     let skipped = 0;
 
-    skills.forEach((skill, index) => {
+    skillsToInstall.forEach((skill, index) => {
         const skillSource = path.join(sourcePath, skill);
         const skillDest = path.join(targetPath, skill);
 
         if (fs.existsSync(skillSource)) {
             try {
                 copyRecursiveSync(skillSource, skillDest);
-                log(`   ✅ [${index + 1}/14] ${skill}`, 'green');
+                log(`   ✅ [${index + 1}/${skillsToInstall.length}] ${skill}`, 'green');
                 installed++;
             } catch (error) {
-                log(`   ⚠️  [${index + 1}/14] ${skill} - Error: ${error.message}`, 'yellow');
+                log(`   ⚠️  [${index + 1}/${skillsToInstall.length}] ${skill} - Error: ${error.message}`, 'yellow');
                 skipped++;
             }
         } else {
-            log(`   ⚠️  [${index + 1}/14] ${skill} - No encontrado`, 'yellow');
+            log(`   ⚠️  [${index + 1}/${skillsToInstall.length}] ${skill} - No encontrado`, 'yellow');
             skipped++;
         }
     });
@@ -171,7 +206,7 @@ function main() {
     // Resumen final
     log('\n╔════════════════════════════════════════════════════════════╗', 'cyan');
     log(`║   ✨ Instalación Completada                               ║`, 'cyan');
-    log(`║   📊 Skills instalados: ${installed}/14                              ║`, 'cyan');
+    log(`║   📊 Skills instalados: ${installed}/${skillsToInstall.length}                              ║`, 'cyan');
     if (skipped > 0) {
         log(`║   ⚠️  Skills omitidos: ${skipped}                                  ║`, 'yellow');
     }

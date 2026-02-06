@@ -7,6 +7,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-02-06
+
+### Added
+- Installer: Implement `add <skill-name>` command for modular installation.
+- Installer: Dynamic skill counting and validation.
+
 ## [1.1.0] - 2026-02-06
 
 ### Added
@@ -70,6 +76,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ---
 
-[Unreleased]: https://github.com/kamuxx/fullstack-_skills/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/kamuxx/fullstack-_skills/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/kamuxx/fullstack-_skills/releases/tag/v1.1.1
 [1.1.0]: https://github.com/kamuxx/fullstack-_skills/releases/tag/v1.1.0
 [1.0.0]: https://github.com/kamuxx/fullstack-_skills/releases/tag/v1.0.0
